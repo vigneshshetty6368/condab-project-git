@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>Item details</title>
+</head>
+  <body>
+
+    <br>
+      {% if item.concession.DP is True %}
+      <font size = "6">DP </font>
+      {% else %}
+      <font size = "6">Con </font>
+      {% endif %}
+
+      <font size = "6">{{item.Conc_Number}} Item {{item}}</font>
+      <font size = "3 ">[{{item.Conc_Number.Decision}}]</font>
+      <p>[Created at {{item.CreatedDate}} by User: {{item.User}} and last updated at {{item.UpdatedDate}}]</p>
+      <br>
+      <p style="color:blue">Description: {{item.Description}}</p>
+
+      <table class="table table-sm table-bordered">
+        <tbody>
+          <tr>
+            <td><strong>Serial Number :</strong>   {{item.SNumber}}</td>
+            <td><strong>Feature   : </strong>  {{item.Feature}}</td>
+            <td><strong>Requirement     :  </strong> {{item.Requirement}}</td>
+            <td><strong>Mpos    : </strong>  {{item.Mpos}}</td>
+          </tr>
+          <tr>
+            <td><strong>Grid :</strong>   {{item.Grid}}</td>
+            <td><strong>Nom   :</strong>   {{item.Nom}}</td>
+            <td><strong>Tol     :</strong>   {{item.Tol}}</td>
+            <td><strong>Actual    :</strong>   {{item.Actual}}</td>
+          </tr>
+          <tr>
+            <td><strong>Unit :</strong>   {{item.Unit}}</td>
+            <td><strong>Rootcause   :</strong>{{item.Rootcause}}</td>
+          </tr>
+        </tbody>
+
+</table>
+
+<table class="table table-sm table-bordered ">
+<tbody>
+<tr>
+    <td><strong>Part :</strong>{{item.Conc_Number.partnumber.Partnumber}}</td>
+    <td><strong>Supplier :</strong>{{item.Conc_Number.partnumber.Supplier}}</td>
+    <td><strong>Commodity:</strong> {{item.Conc_Number.partnumber.Commodity}}</td>
+    <td><strong>Engine:</strong>{{item.Conc_Number.partnumber.Engine}}</td>
+</tr>
+</tbody>
+</table>
+
+<a href="{% url 'detail' item.Conc_Number.pk %}">
+  <input type="Submit" name="detail" class="btn btn-primary btn-sm" value="Parent Con">
+</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>Delete Con</title>
+<div class="main">
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        Are you sure to delete {{concession.Conc_Number}} ?
+        <input type="submit" value="Yes" />
+          <a href="{% url 'detail' concession.pk %}">Cancel </a>
+    </form>
+</div>
+{% endblock %}

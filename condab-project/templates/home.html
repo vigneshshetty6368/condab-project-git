@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<title>Home</title>
+  <div class="jumbotron">
+      <div class="container-fluid">
+        <h1 class="display-3"><strong>A Website for logging Non-conformance details ...</strong></h1>
+        <p>Let us explore....</p>
+        <br>
+
+        <div class="form-inline">
+        <p><a class="btn btn-primary btn-lg" href="{% url 'accounts:signup' %}" role="button">SignUp &raquo;</a></p>
+        &nbsp;&nbsp; <p><a class="btn btn-primary btn-lg" href="{% url 'accounts:login' %}" role="button">Login &raquo;</a></p>
+      </div>
+      <br>
+    <img src="https://www.thestatesman.com/wp-content/uploads/2019/10/QT-angela-merkel.jpg" width="500" height="300">
+    </div>
+
+{% endblock %}

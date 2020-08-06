@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<title>Home</title>
+
+  <body>
+    <br>
+    <a href="{%url 'createcon'%}">
+      <input type="Submit" name="creatcon" class="btn btn-info btn-sm" value="Add Con">
+    </a>
+
+<table class="table table-sm table-striped table-bordered">
+  <thead>
+     <tr class='text-center' style="background-color:grey;">
+       <th>Conc</th>
+       <th>Item</th>
+       <th>S.No</th>
+       <th>Part</th>
+       <th>Supplier</th>
+       <th>Mpos</th>
+       <th>Grid</th>
+       <th>Nom</th>
+       <th>Tol</th>
+       <th>Actual</th>
+       <th>Decision</th>
+       <th>Indate</th>
+       <th>Outdate</th>
+       <th>User</th>
+     </tr>
+     <tr>
+         <form method="post">
+         {% csrf_token %}
+         <th style="width:130px"><input type="Text" name="Conc" value=""class="form-control form-control-sm" placeholder="contains..."></th>
+         <th style="width:60px"><input type="Text" name="Item" value="" class="form-control form-control-sm" placeholder="startswith..."></th>
+         <th><input type="Text" name="SNo" value=""class="form-control form-control-sm" placeholder="contains..."></th>
+         <th><input type="Text" name="Part" value=""class="form-control form-control-sm" placeholder="contains..."></th>
+         <th><input type="Text" name="Supplier" value=""class="form-control form-control-sm" placeholder="startswith..."></th>
+         <th style="width:80px"><input type="Text" name="Mpos" value=""class="form-control form-control-sm" placeholder="startswith..."></th>
+         <th style="width:80px"><input type="Text" name="Grid" value=""class="form-control form-control-sm" placeholder="startswith..."></th>
+         <th style="width:105px"><input type="Text" name="Nom" value=""class="form-control form-control-sm" placeholder="startswith..."></th>
+         <th style="width:80px"><input type="Text" name="Tol" value=""class="form-control form-control-sm" placeholder="contains..."></th>
+         <th style="width:105px"><input type="Text" name="Actual" value=""class="form-control form-control-sm" placeholder="startswith..."></th>
+         <th style="width:105px"><input type="Text" name="Decision" value=""class="form-control form-control-sm" placeholder="contains..."></th>
+         <th style="width:105px"><input type="Text" name="Indate" value=""class="form-control form-control-sm" placeholder="year only"></th>
+         <th style="width:105px"><input type="Text" name="Outdate" value=""class="form-control form-control-sm" placeholder="year only"></th>
+         <th style="width:105px"><input type="Text" name="User" value=""class="form-control form-control-sm" placeholder="contains"></th>
+         <input type="submit" class="btn btn-primary btn-sm" value="Search">
+         <hr>
+       </form>
+
+     </tr>
+   </thead>
+   <tbody >
+      {% for item in Items %}
+      <tr class="text-center">
+        <td><a href="{% url 'detail' item.Conc_Number.pk %}">{{item.Conc_Number.Conc_Number}}</a></td>
+        <td><a href="{% url 'detailitem' item.pk %}">LI {{item.Number}}</a></td>
+        <td>{{item.SNumber}}</td>
+        <td>{{item.Conc_Number.partnumber}}</td>
+        <td>{{item.Conc_Number.partnumber.Supplier}}</td>
+        <td> {{item.Mpos}}</td>
+        <td>{{item.Grid}}</td>
+        <td>{{item.Nom}}</td>
+        <td>{{item.Tol}}</td>
+        <td>{{item.Actual}}</td>
+        <td>{{item.Conc_Number.Decision}}</td>
+        <td>{{item.Conc_Number.Indate|date:"d-m-Y"}}</td>
+        <td>{{item.Conc_Number.Outdate|date:"d-m-Y"}}</td>
+        <td>{{item.User}}</td>
+      </tr>
+       {% endfor %}
+
+   </tbody>
+</table>
+
+{% endblock %}

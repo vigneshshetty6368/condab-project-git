@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form class="#" method="post">
+       {% csrf_token %}
+      {{form1}}
+      {{form2.as_p}}
+      {% if error %}
+        {{error}}
+      {% endif %}
+      <input type="submit" name="" value="update">
+  </body>
+</html>

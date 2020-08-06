@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>Delete Item</title>
+<div class="main">
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        Are you sure to delete {{item.Conc_Number}} Line item {{item.Number}} ?
+
+        <input type="submit" name='Yes' value="Yes" />
+        <a href="{% url 'detail' item.Conc_Number.pk %}">Cancel </a>
+    </form>
+</div>
+{% endblock %}

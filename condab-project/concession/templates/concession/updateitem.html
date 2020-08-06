@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- {% for error in form.non_field_errors %}
+{{error}}
+{% endfor %} -->
+<title>Update Item</title>
+  <div class="container">
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-4">
+        <label for="id_Conc_Number">Concession:</label>
+        <br>  {{form2.Conc_Number}}
+      </div>
+        <div class="col-2">
+        <label for="id_Number">Number:</label>
+        <br>  {{form2.Number}}
+        </div>
+      </div>
+        <label for="id_Description">Description:</label>
+        {{form2.Description}}
+        <br>
+    <div class="row">
+        <div class="col">
+          <label for="id_SNumber">Serial Number:</label>
+          <br>{{form2.SNumber}}
+        </div>
+        <div class="col-3">
+          <label for="id_Feature">Feature: </label>
+          <br>{{form2.Feature}}
+        </div>
+        <div class="col-4">
+          <label for="id_Requirement">Requirement:</label>
+        <br>  {{form2.Requirement}}
+        </div>
+        <div class="col-2">
+          <label for="id_Mpos">Mpos:</label>
+          {{form2.Mpos}}
+        </div>
+
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <label for="id_Grid">Grid:</label>
+          <br>{{form2.Grid}}
+        </div>
+          <div class="col">
+            <label for="id_Nom">Nom:</label>
+            <br>{{form2.Nom}}
+          </div>
+          <div class="col">
+            <label for="id_Tol">Tol:</label>
+            {{form2.Tol}}
+          </div>
+          <div class="col">
+            <label for="id_Actual">Actual:</label>
+            <br>{{form2.Actual}}
+          </div>
+          <div class="col-2">
+            <label for="id_Nom">Unit:</label>
+            <br>{{form2.Unit}}
+          </div>
+          <div class="col-2">
+            <label for="id_Rootcause">Rootcause:</label>
+            {{form2.Rootcause}}
+          </div>
+        </div>
+        <br>
+
+    <input class='btn btn-primary btn-sm' type="submit" name="Updateitem" value="Update">
+    </form>
+    <br>
+    <a href="{% url 'detail' olditem.Conc_Number.pk %}">
+      <input type="Submit" name="Back" class="btn btn-info btn-sm" value="  Back  ">
+    </a>
+
+{% endblock %}

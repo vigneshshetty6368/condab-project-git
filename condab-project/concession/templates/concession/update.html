@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<title>Update Con</title>
+  <body>
+  <div class="container">
+
+    <form method="post">
+      {% csrf_token %}
+        <label for="id_Conc_Number">Concession:</label>
+        <br>  {{form.Conc_Number}}
+        <br>
+        <label for="id_Description">Description:</label>
+        {{form.Description}}
+        <br>
+    <div class="row">
+        <div class="col">
+          <label for="id_partnumber">Part:</label>
+          <br>{{form.partnumber}}
+        </div>
+        <div class="col">
+          <label for="Drawing_issue">Drawing Issue:</label>
+          <br>{{form.Drawing_issue}}
+        </div>
+        <div class="col">
+          <label for="id_Quantity">Quantity:</label>
+        <br>  {{form.Quantity}}
+        </div>
+        <div class="col">
+          <label for="id_DP">DP ?</label>
+        <br>  {{form.DP}}
+        </div>
+      </div>
+      <br>
+      <div class="row">
+          <div class="col-4">
+            <label for="id_Indate">Indate:</label>
+            <br>{{form.Indate}}
+          </div>
+          <div class="col-4">
+            <label for="id_Outdate">Outdate:</label>
+            <br>{{form.Outdate}}
+          </div>
+          <div class="col-4">
+            <label for="id_Decision">Decision:</label>
+            {{form.Decision}}
+          </div>
+          <!-- <div class="col-4">
+            <label for="id_User">User:</label>
+            {{form2.User}}
+          </div> -->
+        </div>
+        <br>
+
+        <input class='btn btn-primary btn-sm' type="submit" name="Update" value="Update">
+    </form>
+      <br>
+      <a href="{% url 'detail' oldcon.pk %}">
+      <input type="Submit" name="Back" class="btn btn-info btn-sm" value="  Back  ">
+    </a>
+  </div>
+
+  </body>
+
+  {% endblock  %}

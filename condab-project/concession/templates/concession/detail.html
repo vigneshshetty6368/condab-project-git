@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<title>Con details</title>
+  <body>
+<div class="">
+
+      <br>
+      {% if concession.DP is True %}
+      <font size = "7">DP </font>
+      {% else %}
+      <font size = "7">Con </font>
+      {% endif %}
+
+      <font size = "7">{{concession.Conc_Number}}</font>
+      <font size = "4">[{{concession.Decision}}]</font>
+
+      <p>[Created at {{concession.CreatedDate}} by User: {{concession.User}} and last updated at {{concession.UpdatedDate}}]</p>
+      <br>
+      <p style="color:blue">Description: {{concession.Description}}</p>
+      <table class="table table-sm table-bordered">
+        <tbody>
+          <tr>
+            <td><strong>Part/Issue :</strong>   {{concession.partnumber}}/{{concession.Drawing_issue}}</td>
+            <td><strong>Supplier :</strong> {{concession.partnumber.Supplier}}</td>
+            <td><strong>Commodity:</strong> {{concession.partnumber.Commodity}}</td>
+            <td><strong>Engine:</strong> {{concession.partnumber.Engine}}</td>
+            <td><strong>Quantity   :</strong> {{concession.Quantity}}</td>
+            <td><strong>Indate     :</strong>   {{concession.Indate|date:"d-M-Y"}}</td>
+            <td><strong>Outdate    : </strong>  {{concession.Outdate|date:"d-M-Y"}}</td>
+          </tr>
+        </tbody>
+
+</table>
+
+      <div class="form-inline">
+
+            <form method="post" >
+              {% csrf_token %}
+                <input type="Submit" name="update" class="btn btn-primary btn-sm"value="Update">
+                <input type="Submit" name="createitem" class="btn btn-info btn-sm" value="Add Item">
+                <input type="Submit" name="delete" class="btn btn-danger btn-sm" value="Delete">
+              </form>
+            <form method="post" form-group>
+                {% csrf_token %}
+                &nbsp;<input type="Submit" name="saveas" class="btn btn-success btn-sm" value="Saveas">
+                <input type="Text" name="conc" class='form-control form-control-sm col-16' required>
+                <!-- <button type="button" class="btn btn-danger btn-sm" <a href="{% url 'delete' concession.pk %}">Delete </a></button> -->
+            </form>
+
+</div>
+<br>
+      <table class="table table-sm table-striped table-bordered table-hover">
+        <thead>
+           <tr>
+             <th>Conc</th>
+             <th>Item</th>
+             <th>S.No</th>
+             <th>Part</th>
+             <th>Feature</th>
+             <th>Requirement</th>
+             <th>Mpos</th>
+             <th>Grid</th>
+             <th>Nom</th>
+             <th>Tol</th>
+             <th>Actual</th>
+             <th>Unit</th>
+             <th>Rootcause</th>
+           </tr>
+        </thead>
+        <tbody>
+           {% for item in concession.item_set.all %}
+           <tr>
+             <td>{{item.Conc_Number.Conc_Number}}</td>
+             <td><a href="{% url 'detailitem' item.pk %}">LI {{item.Number}}</a></td>
+             <td>{{item.SNumber}}</td>
+             <td>{{item.Conc_Number.partnumber}}</td>
+             <td> {{item.Feature}}</td>
+             <td> {{item.Requirement}}</td>
+             <td> {{item.Mpos}}</td>
+             <td>{{item.Grid}}</td>
+             <td>{{item.Nom}}</td>
+             <td>{{item.Tol}}</td>
+             <td>{{item.Actual}}</td>
+             <td>{{item.Unit}}</td>
+             <td>{{item.Rootcause}}</td>
+             <td style="width:150px">
+               <a href="{% url 'updateitem' item.pk %}">
+                 <input type="Submit" name="updateitem" class="btn btn-primary btn-sm" value="Update">
+               </a>
+               <a href="{% url 'deleteitem' item.pk %}">
+                 <input type="Submit" name="updateitem" class="btn btn-danger btn-sm" value="Delete">
+               </a>
+             </td>
+
+           </tr>
+            {% endfor %}
+
+        </tbody>
+     </table>
+  </body>
+</html>
+{% endblock %}

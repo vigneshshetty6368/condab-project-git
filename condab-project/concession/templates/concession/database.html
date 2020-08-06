@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<title>Database</title>
+<table class="table table-sm table-striped table-bordered ">
+  <thead>
+     <tr class='text-center' style="background-color:grey;">
+       <th>Part Number</th>
+        <th>Name</th>
+       <th>Supplier</th>
+       <th>Commodity</th>
+       <th>Engine</th>
+     </tr>
+     <tr class="text-center">
+       <form class="" method="post">
+           {% csrf_token %}
+         <th>{{form.Partnumber}}</th>
+         <th>{{form.Partname}}</th>
+         <th>{{form.Supplier}}</th>
+         <th>{{form.Commodity}}</th>
+         <th>{{form.Engine}}</th>
+         <input type="Submit" name="createpart" class="btn btn-info" value="Add part">
+         <hr>
+       </form>
+     </tr>
+  </thead>
+  <tbody >
+     {% for Part in Parts %}
+     <tr class="text-center">
+       <td>{{Part.Partnumber}}</td>
+       <td>{{Part.Partname}}</td>
+       <td>{{Part.Supplier}}</td>
+       <td>{{Part.Commodity}}</td>
+       <td>{{Part.Engine}}</td>
+     </tr>
+      {% endfor %}
+  </tbody>
+  </table>
+{% endblock %}
